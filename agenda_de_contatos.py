@@ -14,10 +14,12 @@ def ver_contatos(contatos):
 
 def editar_contato(contatos):
   ver_contatos(contatos)
-  indice = int(input("Digite o número do contato que deseja editar: "))
-  indice -= 1
-
-  contato = contatos[indice]
+  try:
+    indice = int(input("Digite o número do contato que deseja editar: "))
+    indice -= 1
+    contato = contatos[indice]
+  except (ValueError, IndexError):
+    print("Contato inválido")
 
   novo_nome = input("Digite o novo nome: ")
   novo_telefone = input("Digite o novo telefone: ")
@@ -62,7 +64,7 @@ def deletar_contato(contatos):
   indice -= 1
 
   contato_removido = contatos.pop(indice)
-  print(f"O contato {contato_removido} foi removido com sucesso!")
+  print(f"O contato {contato_removido['Contato']} foi removido com sucesso!")
     
 contatos = []
 
