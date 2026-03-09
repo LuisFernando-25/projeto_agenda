@@ -5,7 +5,29 @@ def adicionar_contato(contatos, nome_contato, telefone_contato, email_contato):
 
 def ver_contatos(contatos):
   print("\nAgenda de contatos:")
-  
+  for indice, contato in enumerate(contatos, start=1):
+    status = "★" if contato["Favoritado"] else " "
+    nome = contato["Contato"]
+    telefone = contato["Telefone"]
+    email = contato["E-mail"]
+    print(f"{indice}.[{status}] {nome} | {telefone} | {email}") 
+
+def editar_contato(contatos,):
+  ver_contatos(contatos)
+  indice = int(input("Digite o número do contato que deseja editar: "))
+  indice -= 1
+
+  contato = contatos[indice]
+
+  novo_nome = input("Digite o novo nome: ")
+  novo_telefone = input("Digite o novo telefone: ")
+  novo_email = input("Digite o novo e-mail: ")
+
+  contato["Contato"] = novo_nome
+  contato["Telefone"] = novo_telefone
+  contato["E-mail"] = novo_email
+
+  print("Contato atualizado com sucesso!")
 
 contatos = []
 
@@ -29,3 +51,7 @@ while True:
 
   elif escolha == "2":
     ver_contatos(contatos)
+
+  elif escolha == "3":
+    editar_contato(contatos)
+    
