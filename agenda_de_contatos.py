@@ -12,7 +12,7 @@ def ver_contatos(contatos):
     email = contato["E-mail"]
     print(f"{indice}.[{status}] {nome} | {telefone} | {email}") 
 
-def editar_contato(contatos,):
+def editar_contato(contatos):
   ver_contatos(contatos)
   indice = int(input("Digite o número do contato que deseja editar: "))
   indice -= 1
@@ -29,6 +29,41 @@ def editar_contato(contatos,):
 
   print("Contato atualizado com sucesso!")
 
+def favoritar_contato(contatos):
+  ver_contatos(contatos)
+  indice = int(input("Digite o número do contato que deseja favoritar: "))
+  indice -= 1
+
+  contato = contatos[indice]
+
+  contato["Favoritado"] = not contato["Favoritado"]
+  # Truque fazendo com que False = True e True = False
+
+  if contato["Favoritado"]:
+    print("Contato marcado como favorito!")
+  else:
+    print("Contato removido dos favoritos!")
+
+def ver_favoritos(contatos):
+  print("\nVer favoritos:")
+  
+  for contato in contatos:
+    if contato["Favoritado"]:
+
+      nome = contato["Contato"]
+      telefone = contato["Telefone"]
+      email = contato["E-mail"]
+
+      print(f"★  {nome} | {telefone} | {email}")
+
+def deletar_contato(contatos):
+  ver_contatos(contatos)
+  indice = int(input("Digite o número do contato que deseja remover: "))
+  indice -= 1
+
+  contato_removido = contatos.pop(indice)
+  print(f"O contato {contato_removido} foi removido com sucesso!")
+    
 contatos = []
 
 while True:
@@ -41,10 +76,10 @@ while True:
   print("6. Apagar contato")
   print("7. Sair")
 
-  escolha = input("Escolha uma opção: ")
+  escolha = input("\nEscolha uma opção: ")
 
   if escolha == "1":
-    nome_contato = input("Digite o nome: ")
+    nome_contato = input("\nDigite o nome: ")
     telefone_contato = input("Digite o telefone: ")
     email_contato = input("Digite o e-mail: ")
     adicionar_contato(contatos, nome_contato, telefone_contato, email_contato)
@@ -54,4 +89,17 @@ while True:
 
   elif escolha == "3":
     editar_contato(contatos)
-    
+
+  elif escolha == "4":
+    favoritar_contato(contatos)
+
+  elif escolha == "5":
+    ver_favoritos(contatos)  
+
+  elif escolha == "6":
+    deletar_contato(contatos)
+
+  elif escolha == "7":
+    break
+
+print("Programa finalizado!")
